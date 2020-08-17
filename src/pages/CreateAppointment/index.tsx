@@ -1,8 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 
 const CreateAppointment: React.FC = () => {
-  return <View />;
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#312e38" />
+      <View />
+    </>
+  );
 };
 
 export default CreateAppointment;
