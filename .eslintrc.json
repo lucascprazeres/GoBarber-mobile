@@ -29,8 +29,11 @@
     "prettier"
   ],
   "rules": {
+    "camelcase":"off",
     "prettier/prettier": "error",
     "react/prop-types": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/ban-types": "off",
     "no-unused-expressions": "off",
     "react/jsx-props-no-spreading": "off",

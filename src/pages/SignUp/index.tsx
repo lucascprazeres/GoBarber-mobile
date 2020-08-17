@@ -7,6 +7,7 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  StatusBar,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -80,6 +81,7 @@ const SignUp: React.FC = () => {
 
   return (
     <>
+      <StatusBar barStyle="light-content" backgroundColor="#312e38" />
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
