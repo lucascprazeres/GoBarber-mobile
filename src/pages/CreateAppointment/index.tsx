@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform, Alert } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 import { format } from 'date-fns';
@@ -34,6 +34,8 @@ import {
   SectionContent,
   Hour,
   HourText,
+  CreateAppointmentButton,
+  CreateAppointmentButtonText,
 } from './styles';
 
 interface RouteParams {
@@ -48,7 +50,7 @@ interface AvailabilityItem {
 const CreateAppointment: React.FC = () => {
   const { user } = useAuth();
 
-  const { goBack } = useNavigation();
+  const { navigate, goBack } = useNavigation();
 
   const route = useRoute();
   const routeParams = route.params as RouteParams;
@@ -107,6 +109,29 @@ const CreateAppointment: React.FC = () => {
   const handleSelectHour = useCallback((hour: number) => {
     setSelectedHour(hour);
   }, []);
+
+  const handleCreateAppointment = useCallback(async () => {
+    try {
+      const date = new Date(selectedDate);
+
+      date.setHours(selectedHour);
+      date.setMinutes(0);
+
+      await api.post('appointments', {
+        provider_id: selectedProviderId,
+        date,
+      });
+
+      navigate('AppointmentCreated', {
+        date: date.getTime(),
+      });
+    } catch (err) {
+      Alert.alert(
+        'Erro ao realizar agendamento',
+        'Ocorreu um erro ao realizar o agendamento, tente novamente.',
+      );
+    }
+  }, [navigate, selectedDate, selectedProviderId, selectedHour]);
 
   const morningAvailability = useMemo(() => {
     return availability
@@ -237,6 +262,10 @@ const CreateAppointment: React.FC = () => {
               </SectionContent>
             </Section>
           </Schedule>
+
+          <CreateAppointmentButton onPress={handleCreateAppointment}>
+            <CreateAppointmentButtonText>Agendar</CreateAppointmentButtonText>
+          </CreateAppointmentButton>
         </Content>
       </Container>
     </>
