@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 export const Container = styled.ScrollView.attrs({
   flex: 1,
@@ -29,4 +30,21 @@ export const UserAvatar = styled.Image`
   width: 186px;
   border-radius: 93px;
   align-self: center;
+`;
+
+export const BacktoSignIn = styled.TouchableOpacity`
+  border-top-width: 1px;
+
+  padding: 32px 0 0;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BacktoSignInText = styled.Text`
+  color: #c53030;
+  font-size: 16px;
+  font-family: 'RobotoSlab-Regular';
+  margin-left: 16px;
 `;

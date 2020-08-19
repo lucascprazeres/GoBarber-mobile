@@ -18,7 +18,6 @@ import ImagePicker from 'react-native-image-picker';
 
 import Icon from 'react-native-vector-icons/Feather';
 
-import { formatDistance } from 'date-fns';
 import api from '../../services/api';
 
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -32,6 +31,8 @@ import {
   BackButton,
   UserAvatarButton,
   UserAvatar,
+  BacktoSignIn,
+  BacktoSignInText,
 } from './styles';
 import { useAuth } from '../../hooks/auth';
 
@@ -44,7 +45,7 @@ interface UpdateProfileFormData {
 }
 
 const SignUp: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, signOut } = useAuth();
 
   const { goBack } = useNavigation();
 
@@ -252,6 +253,11 @@ const SignUp: React.FC = () => {
                 Confirmar mudanças
               </Button>
             </Form>
+
+            <BacktoSignIn onPress={signOut}>
+              <Icon name="log-out" size={20} color="#c53030" />
+              <BacktoSignInText>Logout</BacktoSignInText>
+            </BacktoSignIn>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
