@@ -44,9 +44,15 @@ export const UserAvatar = styled.Image`
   border-radius: 28px;
 `;
 
-export const ProvidersList = styled(FlatList as new () => FlatList<Provider>)`
-  padding: 32px 24px 16px;
-`;
+export const ProvidersList = styled(
+  FlatList as new () => FlatList<Provider>,
+).attrs({
+  contentContainerStyle: {
+    paddingTop: 32,
+    paddingHorizontal: 24,
+    paddingBottom: 16,
+  },
+})``;
 
 export const ProvidersListTitle = styled.Text`
   margin-bottom: 24px;
